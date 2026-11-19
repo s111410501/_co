@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nand2Tetris VM Translator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Nand2Tetris VM Translator</h1>
+    <p>在瀏覽器中將 .vm 翻譯成 Hack assembly，不需要安裝任何套件。</p>
+  </header>
+
+  <main class="layout">
+    <section class="panel">
+      <div class="panel-head">
+        <h2>輸入 VM 程式</h2>
+        <span class="badge">.vm</span>
+      </div>
+
+      <div id="drop-zone" class="drop-zone">
+        <strong>拖曳 .vm 檔案到這裡</strong>
+        <span>或點擊選擇檔案，可一次選擇多個檔案</span>
+      </div>
+      <input id="file-input" type="file" accept=".vm" multiple hidden>
+
+      <div class="row">
+        <label for="file-name">檔案名稱（影響 static 符號）</label>
+        <input id="file-name" type="text" value="Main.vm" spellcheck="false">
+      </div>
+
+      <label class="checkbox">
+        <input id="bootstrap" type="checkbox">
+        <span>加入 bootstrap（SP=256，呼叫 Sys.init）</span>
+      </label>
+
+      <label for="vm-text">或直接貼上 VM 程式碼</label>
+      <textarea id="vm-text" spellcheck="false" placeholder="push constant 7&#10;push constant 8&#10;add">push constant 7
+push constant 8
+add</textarea>
+
+      <button id="translate-button" class="primary" type="button">翻譯成 .asm</button>
+    </section>
+
+    <section class="panel">
+      <div class="panel-head">
+        <h2>輸出 Hack Assembly</h2>
+        <span id="status" class="status"></span>
+      </div>
+
+      <textarea id="output" spellcheck="false" readonly placeholder="翻譯結果會顯示在這裡"></textarea>
+
+      <div id="error" class="error" role="alert" hidden></div>
+
+      <div class="actions">
+        <button id="copy-button" type="button">複製</button>
+        <button id="download-button" type="button">下載 .asm</button>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    支援 add/sub/neg/eq/gt/lt/and/or/not、push/pop、label/goto/if-goto、function/call/return。
+    產生的 .asm 仍須用 Nand2Tetris Assembler 組譯成 .hack。
+  </footer>
+
+  <script src="vm_translator.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
