@@ -4,6 +4,14 @@
 
 整個應用程式只有一個 `index.html`：CSS 與 JavaScript 都已內嵌，沒有外部檔案、套件或後端。任何人只要把這個檔案放到自己的伺服器即可使用。
 
+## 線上網址
+
+<https://s111410501.github.io/_co/week_11/>
+
+GitHub repository：<https://github.com/s111410501/_co/tree/main/week_11>
+
+若上面網址還沒出現內容，請先確認 `index.html` 已 commit/push 到 `main`，再到 repository → `Settings` → `Pages`，把 `Source` 設為 `Deploy from a branch`，Branch 選 `main`、資料夾選 `/ (root)`，按 `Save` 後等待幾分鐘即可。
+
 ## 部署
 
 ### 最簡單
@@ -13,7 +21,7 @@
 - Apache：`/var/www/html/index.html`
 - Nginx：`/usr/share/nginx/html/index.html`
 - IIS：`C:\inetpub\wwwroot\index.html`
-- GitHub Pages：直接放在 repository 根目錄
+- GitHub Pages：此專案可從 `/week_11/` 路徑存取，見上方「線上網址」
 - 任何物件儲存／靜態託管服務
 
 訪客開啟 `https://你的域名/index.html` 即可。
