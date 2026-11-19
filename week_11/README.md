@@ -1,34 +1,40 @@
-# Nand2Tetris VM Translator（網頁版）
+# Nand2Tetris VM Translator（單檔網頁版）
 
-在瀏覽器中把 Nand2Tetris 的 `.vm` 程式翻譯成 Hack 組合語言 `.asm`（Projects 7 & 8）。不需要安裝 Python 或任何套件。
+把 Nand2Tetris 的 `.vm` 程式翻譯成 Hack 組合語言 `.asm`（Projects 7 & 8）。
 
-## 檔案
+整個應用程式只有一個 `index.html`：CSS 與 JavaScript 都已內嵌，沒有外部檔案、套件或後端。任何人只要把這個檔案放到自己的伺服器即可使用。
 
-| 檔案 | 說明 |
-| --- | --- |
-| `index.html` | 網頁介面 |
-| `style.css` | 樣式 |
-| `vm_translator.js` | VM → Hack 翻譯核心 |
-| `app.js` | 上傳、貼上、複製、下載等介面邏輯 |
-| `README.md` | 本說明 |
+## 部署
 
-## 使用方式
+### 最簡單
 
-直接用瀏覽器開啟 `index.html` 即可。
+把 `index.html` 上傳到任意靜態伺服器的網站根目錄，例如：
 
-1. 在左側拖曳或點擊上傳 `.vm` 檔案，或直接在文字區貼上 VM 程式碼。
-2. 可一次上傳多個 `.vm` 檔案；此時會自動勾選 bootstrap。
-3. 視需要勾選或取消 `加入 bootstrap`。
-4. 點擊 `翻譯成 .asm`。
-5. 右側可複製結果或下載 `.asm` 檔。
+- Apache：`/var/www/html/index.html`
+- Nginx：`/usr/share/nginx/html/index.html`
+- IIS：`C:\inetpub\wwwroot\index.html`
+- GitHub Pages：直接放在 repository 根目錄
+- 任何物件儲存／靜態託管服務
 
-若要使用本機伺服器（部分瀏覽器對 `file://` 較嚴格）：
+訪客開啟 `https://你的域名/index.html` 即可。
+
+### 本機測試
+
+直接雙擊 `index.html`，或啟動一個臨時伺服器：
 
 ```bash
 python -m http.server 8000
 ```
 
-然後開啟 <http://localhost:8000>。
+再開啟 <http://localhost:8000>。
+
+## 使用方式
+
+1. 拖曳或點擊上傳 `.vm` 檔案，或直接在左側貼上 VM 程式碼。
+2. 可一次上傳多個 `.vm` 檔案；此時會自動勾選 bootstrap。
+3. 依需求勾選或取消 `加入 bootstrap`。
+4. 點擊 `翻譯成 .asm`。
+5. 右側可複製結果或下載 `.asm` 檔。
 
 ## Bootstrap
 
@@ -43,7 +49,7 @@ M=D
 // call Sys.init 0 ...
 ```
 
-也就是 `SP = 256` 並呼叫 `Sys.init`。上傳單一檔案時預設不勾選；上傳多個檔案時預設勾選，與命令列版的資料夾行為一致。
+也就是 `SP = 256` 並呼叫 `Sys.init`。上傳單一檔案時預設不勾選；上傳多個檔案時預設勾選。
 
 ## 支援的 VM 指令
 
